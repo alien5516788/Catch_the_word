@@ -1,7 +1,7 @@
 #include "window.hpp"
 
-float windowHeight = 640;
-float windowWidth = 1024;
+float windowHeight = 640.0;
+float windowWidth = 1024.0;
 
 short changeWindow = false;
 short currentWindow = 0;

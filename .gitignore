@@ -8,3 +8,6 @@ build/
 
 # libraries
 libs/
+
+# vscode
+.vscode/

@@ -9,8 +9,8 @@
 #include "SFML/Audio.hpp"
 
 // selection menu
-extern double selectionMenuHeight;
-extern double selectionMenuWidth;
+extern float selectionMenuHeight;
+extern float selectionMenuWidth;
 
 extern sf::Texture selectionMenuTexture;
 extern sf::Sprite selectionMenu;
@@ -85,8 +85,6 @@ extern sf::Text catchedWordText;
 void catchWord();
 
 void getInput(int unicode);
-
-void warnInput();
 
 extern int missedWordCount;
 extern sf::Text missedWordText;

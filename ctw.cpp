@@ -11,81 +11,97 @@ int main(){
     window.setFramerateLimit(60);
 
     icon.loadFromFile("assets/images/icon.ico");
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    window.setIcon({icon.getSize().x, icon.getSize().y}, icon.getPixelsPtr());
 
     // main menu
+
     mainMenuBackground.loadFromFile("assets/images/main_menu.jpg");
     mainMenu.setTexture(&mainMenuBackground);
     mainMenu.setSize(sf::Vector2f(mainMenuWidth, mainMenuHeight));
 
     titleTexture.loadFromFile("assets/images/title.png");
-    title.setTexture(titleTexture);
+    sf::Sprite title(titleTexture);
+    // title.setTexture(titleTexture);
     title.setOrigin(sf::Vector2f(500, 150));
     title.setPosition(sf::Vector2f(512, 250));
     
     playButtonTexture.loadFromFile("assets/images/play_button.png");
+    sf::Sprite playButton(playButtonTexture);
+    // playButton.setTexture(playButtonTexture);
     playButton.setPosition(sf::Vector2f(512, 450));
     playButton.setOrigin(sf::Vector2f(200, 50));
-    playButton.setTexture(playButtonTexture);
-
+    
     // text board
-    selectionMenuTexture.loadFromFile("assets/images/selection_menu.png");
-    selectionMenu.setTexture(selectionMenuTexture);
 
+    selectionMenuTexture.loadFromFile("assets/images/selection_menu.png");
+    sf::Sprite selectionMenu(selectionMenuTexture);
+    // selectionMenu.setTexture(selectionMenuTexture);
+    
+    sf::Text wordCountText(font);
+    // wordCountText.setFont(font);
     wordCountText.setCharacterSize(25);
-    wordCountText.setFont(font);
     wordCountText.setFillColor(sf::Color::White);
     wordCountText.setPosition(sf::Vector2f(140, 6));
 
     decWordsTexture.loadFromFile("assets/images/dec_words.png");
-    decWordsButton.setTexture(decWordsTexture);
+    sf::Sprite decWordsButton(decWordsTexture);
+    // decWordsButton.setTexture(decWordsTexture);
     decWordsButton.setOrigin(sf::Vector2f(25, 18));
     decWordsButton.setPosition(sf::Vector2f(260, 20));
     
     incWordsTexture.loadFromFile("assets/images/inc_words.png");
-    incWordsButton.setTexture(incWordsTexture);
+    sf::Sprite incWordsButton(incWordsTexture);
+    // incWordsButton.setTexture(incWordsTexture);
     incWordsButton.setOrigin(sf::Vector2f(25, 18));
     incWordsButton.setPosition(sf::Vector2f(320, 20));
     
     runButtonTexture.loadFromFile("assets/images/run_button.png");
     pauseButtonTexture.loadFromFile("assets/images/pause_button.png");
-    runPauseButton.setTexture(runButtonTexture);
+    sf::Sprite runPauseButton(runButtonTexture);
+    // runPauseButton.setTexture(runButtonTexture);
     runPauseButton.setOrigin(sf::Vector2f(25, 18));
     runPauseButton.setPosition(sf::Vector2f(904, 20));
 
     restartButtonTexture.loadFromFile("assets/images/restart_button.png");
-    restartButton.setTexture(restartButtonTexture);
+    sf::Sprite restartButton(restartButtonTexture);
+    // restartButton.setTexture(restartButtonTexture);
     restartButton.setOrigin(sf::Vector2f(25, 18));
     restartButton.setPosition(sf::Vector2f(964, 20));
     
     textBoardTexture.loadFromFile("assets/images/text_board.jpg");
-    textBoard.setTexture(textBoardTexture);
+    sf::Sprite textBoard(textBoardTexture);
+    // textBoard.setTexture(textBoardTexture);
     font.loadFromFile("assets/fonts/OpenSans-Regular.ttf");
 
     srand(time(0));
     loadWordList();
 
     scoreBoardTexture.loadFromFile("assets/images/score_board.png");
-    scoreBoard.setTexture(scoreBoardTexture);
+    sf::Sprite scoreBoard(scoreBoardTexture);
+    // scoreBoard.setTexture(scoreBoardTexture);
     scoreBoard.setPosition(sf::Vector2f(0, selectionMenuHeight + textBoardHeight));
 
     inputText.setCharacterSize(30);
-    inputText.setFont(font);
+    sf::Text inputText(font);
+    // inputText.setFont(font);
     inputText.setFillColor(sf::Color::Black);
     inputText.setPosition(sf::Vector2f(30, 590));
 
     catchedWordText.setCharacterSize(20);
-    catchedWordText.setFont(font);
+    sf::Text catchedWordText(font);
+    // catchedWordText.setFont(font);
     catchedWordText.setFillColor(sf::Color::White);
     catchedWordText.setPosition(sf::Vector2f(560, 600));
 
     missedWordText.setCharacterSize(20);
-    missedWordText.setFont(font);
+    sf::Text missedWordText(font);
+    // missedWordText.setFont(font);
     missedWordText.setFillColor(sf::Color::White);
     missedWordText.setPosition(sf::Vector2f(760, 600));
-
+    
+    sf::Text wpmText(font);
+    // wpmText.setFont(font);
     wpmText.setCharacterSize(20);
-    wpmText.setFont(font);
     wpmText.setFillColor(sf::Color::White);
     wpmText.setPosition(sf::Vector2f(935, 600));
     

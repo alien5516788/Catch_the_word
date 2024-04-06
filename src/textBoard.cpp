@@ -1,25 +1,25 @@
 #include "textBoard.hpp"
 
-double selectionMenuHeight = 40;
-double selectionMenuWidth = 1024;
+float selectionMenuHeight = 40.0;
+float selectionMenuWidth = 1024.0;
 
 sf::Texture selectionMenuTexture;
-sf::Sprite selectionMenu;
+// sf::Sprite selectionMenu;
 
-sf::Text wordCountText;
+// sf::Text wordCountText;
 
 sf::Texture decWordsTexture;
-sf::Sprite decWordsButton;
+// sf::Sprite decWordsButton;
 
 sf::Texture incWordsTexture;
-sf::Sprite incWordsButton;
+// sf::Sprite incWordsButton;
 
 sf::Texture runButtonTexture;
 sf::Texture pauseButtonTexture;
-sf::Sprite runPauseButton;
+// sf::Sprite runPauseButton;
 
 sf::Texture restartButtonTexture;
-sf::Sprite restartButton;
+// sf::Sprite restartButton;
 
 bool paused = true;
 bool finished = true;
@@ -119,7 +119,7 @@ double textBoardWidth = 1024;
 double charactorSize = 20;
 
 sf::Texture textBoardTexture;
-sf::Sprite textBoard;
+// sf::Sprite textBoard;
 
 sf::Font font;
 std::vector<std::string> wordList;
@@ -196,8 +196,9 @@ void addWord(sf::RenderWindow& window){
     
     if ((trainingListSize == 0 || trainingList[trainingListSize - 1].getPosition().y >= 80)){
 
-        sf::Text word;
-        word.setFont(font);
+        // sf::Text word;
+        // word.setFont(font);
+        sf::Text word(font);
         word.setString(wordList[nextWord]);
         word.setCharacterSize(charactorSize);
 
@@ -243,13 +244,13 @@ void adjustSpeed(){
 
 // scoreboard
 sf::Texture scoreBoardTexture;
-sf::Sprite scoreBoard;
+// sf::Sprite scoreBoard;
 
 std::vector<char> inputWord;
-sf::Text inputText;
+// sf::Text inputText;
 
 int catchedWordCount = 0;
-sf::Text catchedWordText;
+// sf::Text catchedWordText;
 
 void catchWord(){
     
@@ -319,7 +320,7 @@ void getInput(int unicode){
 }
 
 int missedWordCount = 0;
-sf::Text missedWordText;
+// sf::Text missedWordText;
 
 void kickWord(){
        
@@ -342,7 +343,7 @@ void kickWord(){
 }
 
 int WPM = 0;
-sf::Text wpmText;
+// sf::Text wpmText;
 
 sf::Clock wpmClock;
 double wpmTime = 0;
