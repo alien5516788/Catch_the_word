@@ -1,0 +1,10 @@
+# Game assets
+# These are uplaoded to Git LFS
+assets/
+
+# Out put folders
+bin/
+build/
+
+# libraries
+libs/
