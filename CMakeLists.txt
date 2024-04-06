@@ -24,4 +24,4 @@ target_link_libraries(ctw sfml-graphics sfml-main sfml-window sfml-system sfml-a
 set_target_properties(ctw PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../bin)
 
 # Extra folders
-#   assets/ , bin/ , build/ , libs/
+#   bin/ , build/ , libs/
