@@ -1,8 +1,4 @@
-# Game assets
-# These are uplaoded to Git LFS
-assets/
-
-# Out put folders
+# output folders
 bin/
 build/
 
