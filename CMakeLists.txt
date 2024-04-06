@@ -21,5 +21,6 @@ add_executable(ctw ctw.cpp src/mainMenu.cpp src/textBoard.cpp src/window.cpp)
 target_link_libraries(ctw sfml-graphics sfml-window sfml-system)
 set_target_properties(ctw PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../bin)
 
+# Extra folders
+#   assets/ , bin/ , build/ , libs/
 # SFML root folder path: libs/SFML
-# build path: build , bin path: bin
