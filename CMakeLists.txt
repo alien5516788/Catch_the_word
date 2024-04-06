@@ -18,7 +18,7 @@ add_subdirectory(libs/SFML)
 
 # Target
 add_executable(ctw ctw.cpp src/mainMenu.cpp src/textBoard.cpp src/window.cpp)
-target_link_libraries(ctw sfml-graphics sfml-window sfml-system)
+target_link_libraries(ctw sfml-graphics sfml-window sfml-system sfml-audio)
 set_target_properties(ctw PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../bin)
 
 # Extra folders

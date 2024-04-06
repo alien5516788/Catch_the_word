@@ -7,6 +7,7 @@
 int main(){
 
     // window
+
     sf::RenderWindow window = sf::RenderWindow(sf::VideoMode({windowWidth, windowHeight}), "Catch the word", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
 
@@ -81,21 +82,21 @@ int main(){
     // scoreBoard.setTexture(scoreBoardTexture);
     scoreBoard.setPosition(sf::Vector2f(0, selectionMenuHeight + textBoardHeight));
 
-    inputText.setCharacterSize(30);
     sf::Text inputText(font);
     // inputText.setFont(font);
+    inputText.setCharacterSize(30);
     inputText.setFillColor(sf::Color::Black);
     inputText.setPosition(sf::Vector2f(30, 590));
 
-    catchedWordText.setCharacterSize(20);
     sf::Text catchedWordText(font);
     // catchedWordText.setFont(font);
+    catchedWordText.setCharacterSize(20);
     catchedWordText.setFillColor(sf::Color::White);
     catchedWordText.setPosition(sf::Vector2f(560, 600));
 
-    missedWordText.setCharacterSize(20);
     sf::Text missedWordText(font);
     // missedWordText.setFont(font);
+    missedWordText.setCharacterSize(20);
     missedWordText.setFillColor(sf::Color::White);
     missedWordText.setPosition(sf::Vector2f(760, 600));
     
