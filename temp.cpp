@@ -7,7 +7,7 @@
 int main(){
 
     // window
-    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Catch the word", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode({windowWidth, windowHeight}), "Catch the word", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
 
     icon.loadFromFile("assets/images/icon.ico");
