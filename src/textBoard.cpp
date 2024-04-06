@@ -132,7 +132,7 @@ double speed = 0.7;
 void loadWordList(){
     
     // read file
-    std::ifstream tempWordList("wordlist/wordlist_common.txt");
+    std::ifstream tempWordList("assets/wordlist/wordlist_common.txt");
     
     // load all the words
     std::vector<std::string> wordL;
@@ -261,14 +261,14 @@ void catchWord(){
 
         catchedWordCount++;
 
-        catchMusic.openFromFile("music/catch.wav");
+        catchMusic.openFromFile("assets/music/catch.wav");
         catchMusic.play();
 
     }else{
 
         missedWordCount++;
 
-        missMusic.openFromFile("music/miss.wav");
+        missMusic.openFromFile("assets/music/miss.wav");
         missMusic.play();
 
     } 
@@ -334,7 +334,7 @@ void kickWord(){
         trainingList.erase(trainingList.begin());
         missedWordCount++;
 
-        missMusic.openFromFile("music/miss.wav");
+        missMusic.openFromFile("assets/music/miss.wav");
         missMusic.play();
 
     }

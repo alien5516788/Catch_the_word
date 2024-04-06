@@ -10,26 +10,26 @@ int main(){
     sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(windowWidth, windowHeight), "Catch the word", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
 
-    icon.loadFromFile("images/icon.ico");
+    icon.loadFromFile("assets/images/icon.ico");
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     // main menu
-    mainMenuBackground.loadFromFile("images/main_menu.jpg");
+    mainMenuBackground.loadFromFile("assets/images/main_menu.jpg");
     mainMenu.setTexture(&mainMenuBackground);
     mainMenu.setSize(sf::Vector2f(mainMenuWidth, mainMenuHeight));
 
-    titleTexture.loadFromFile("images/title.png");
+    titleTexture.loadFromFile("assets/images/title.png");
     title.setTexture(titleTexture);
     title.setOrigin(sf::Vector2f(500, 150));
     title.setPosition(sf::Vector2f(512, 250));
     
-    playButtonTexture.loadFromFile("images/play_button.png");
+    playButtonTexture.loadFromFile("assets/images/play_button.png");
     playButton.setPosition(sf::Vector2f(512, 450));
     playButton.setOrigin(sf::Vector2f(200, 50));
     playButton.setTexture(playButtonTexture);
 
     // text board
-    selectionMenuTexture.loadFromFile("images/selection_menu.png");
+    selectionMenuTexture.loadFromFile("assets/images/selection_menu.png");
     selectionMenu.setTexture(selectionMenuTexture);
 
     wordCountText.setCharacterSize(25);
@@ -37,35 +37,35 @@ int main(){
     wordCountText.setFillColor(sf::Color::White);
     wordCountText.setPosition(sf::Vector2f(140, 6));
 
-    decWordsTexture.loadFromFile("images/dec_words.png");
+    decWordsTexture.loadFromFile("assets/images/dec_words.png");
     decWordsButton.setTexture(decWordsTexture);
     decWordsButton.setOrigin(sf::Vector2f(25, 18));
     decWordsButton.setPosition(sf::Vector2f(260, 20));
     
-    incWordsTexture.loadFromFile("images/inc_words.png");
+    incWordsTexture.loadFromFile("assets/images/inc_words.png");
     incWordsButton.setTexture(incWordsTexture);
     incWordsButton.setOrigin(sf::Vector2f(25, 18));
     incWordsButton.setPosition(sf::Vector2f(320, 20));
     
-    runButtonTexture.loadFromFile("images/run_button.png");
-    pauseButtonTexture.loadFromFile("images/pause_button.png");
+    runButtonTexture.loadFromFile("assets/images/run_button.png");
+    pauseButtonTexture.loadFromFile("assets/images/pause_button.png");
     runPauseButton.setTexture(runButtonTexture);
     runPauseButton.setOrigin(sf::Vector2f(25, 18));
     runPauseButton.setPosition(sf::Vector2f(904, 20));
 
-    restartButtonTexture.loadFromFile("images/restart_button.png");
+    restartButtonTexture.loadFromFile("assets/images/restart_button.png");
     restartButton.setTexture(restartButtonTexture);
     restartButton.setOrigin(sf::Vector2f(25, 18));
     restartButton.setPosition(sf::Vector2f(964, 20));
     
-    textBoardTexture.loadFromFile("images/text_board.jpg");
+    textBoardTexture.loadFromFile("assets/images/text_board.jpg");
     textBoard.setTexture(textBoardTexture);
-    font.loadFromFile("fonts/OpenSans-Regular.ttf");
+    font.loadFromFile("assets/fonts/OpenSans-Regular.ttf");
 
     srand(time(0));
     loadWordList();
 
-    scoreBoardTexture.loadFromFile("images/score_board.png");
+    scoreBoardTexture.loadFromFile("assets/images/score_board.png");
     scoreBoard.setTexture(scoreBoardTexture);
     scoreBoard.setPosition(sf::Vector2f(0, selectionMenuHeight + textBoardHeight));
 
@@ -196,7 +196,7 @@ int main(){
         if (currentWindow == 0){
         
             if (introMusic.getStatus() != sf::Music::Playing) {
-                introMusic.openFromFile("music/intro.wav");
+                introMusic.openFromFile("assets/music/intro.wav");
                 introMusic.play();
             }
             if (gameMusic.getStatus() == sf::Music::Playing) gameMusic.stop();
@@ -208,7 +208,7 @@ int main(){
         }else if (currentWindow == 1){
 
             if (gameMusic.getStatus() != sf::Music::Playing) {
-                gameMusic.openFromFile("music/game.wav");
+                gameMusic.openFromFile("assets/music/game.wav");
                 gameMusic.play();
             }
             if (introMusic.getStatus() == sf::Music::Playing) introMusic.stop();
