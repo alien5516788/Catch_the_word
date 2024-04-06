@@ -73,7 +73,7 @@ int main(){
     incWordsButton.setPosition(sf::Vector2f(320, 20));
     
     // run pause button
-    if (!runButtonTexture.loadFromFile("assets/images/run_button.png") && 
+    if (!runButtonTexture.loadFromFile("assets/images/run_button.png") || 
         !pauseButtonTexture.loadFromFile("assets/images/pause_button.png")){
         std::cout << "Failed to load run-pause button" << std::endl;
     }

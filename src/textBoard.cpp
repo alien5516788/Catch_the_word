@@ -261,7 +261,7 @@ void catchWord(sf::Text& inputText){
     
     // return if training list is empty
     if (trainingList.size() == 0 || paused == true) return;
-    
+ 
     // update score
     if (inputText.getString() == trainingList[0].getString()) {
 
@@ -293,7 +293,7 @@ void catchWord(sf::Text& inputText){
 }
 
 void getInput(int unicode, sf::Text& inputText){
-    
+
     // prevent input while paused
     if (paused == true) return;
     
@@ -302,11 +302,16 @@ void getInput(int unicode, sf::Text& inputText){
     inputChar = static_cast<char> (unicode);
 
     std::string text;
-    
+
     // type space to catch
-    // empty word are not catched
+    // catch the word if space is entered
+    // empty words are ignored
     if (inputChar == ' ' && inputWord.size() > 0) {
-        
+
+        for (char chr: inputWord){
+            text += chr;
+        }
+
         inputText.setString(text);
         catchWord(inputText);
         return;
@@ -321,7 +326,7 @@ void getInput(int unicode, sf::Text& inputText){
     for (char chr: inputWord){
         text += chr;
     }
-    
+
     // return if character length exceeds
     // prevent user from inputing unnecessary amount of characters
     if (text.size() > 16) return;
