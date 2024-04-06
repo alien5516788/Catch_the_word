@@ -4,12 +4,14 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 
-extern float windowHeight;
-extern float windowWidth;
+// window
+extern unsigned int windowHeight;
+extern unsigned int windowWidth;
 
 extern short changeWindow;
 extern short currentWindow; // 0 - mainmenu, 1 - text board
 
+// change window
 void windowTransition();
 
 // game icon

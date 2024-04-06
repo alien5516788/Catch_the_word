@@ -1,15 +1,18 @@
 #include "window.hpp"
 
-float windowHeight = 640.0;
-float windowWidth = 1024.0;
+unsigned int windowHeight = 640;
+unsigned int windowWidth = 1024;
 
 short changeWindow = false;
 short currentWindow = 0;
 
 void windowTransition(){
-
-    if (changeWindow != false){
     
+    // periodically check if window is set to change
+    if (changeWindow != false){
+        
+        // keep a delay between transition
+        // This gives time to see the button animation
         sf::Clock clock;
         short dt;
 

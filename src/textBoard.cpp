@@ -1,52 +1,52 @@
 #include "textBoard.hpp"
 
-float selectionMenuHeight = 40.0;
-float selectionMenuWidth = 1024.0;
+unsigned int selectionMenuHeight = 40;
+unsigned int selectionMenuWidth = 1024;
 
 sf::Texture selectionMenuTexture;
-// sf::Sprite selectionMenu;
-
-// sf::Text wordCountText;
 
 sf::Texture decWordsTexture;
-// sf::Sprite decWordsButton;
 
 sf::Texture incWordsTexture;
-// sf::Sprite incWordsButton;
 
 sf::Texture runButtonTexture;
 sf::Texture pauseButtonTexture;
-// sf::Sprite runPauseButton;
 
 sf::Texture restartButtonTexture;
-// sf::Sprite restartButton;
 
 bool paused = true;
 bool finished = true;
 
-void decWords(){
-
+void decWords(sf::Text& inputText, sf::Sprite& runPauseButton){
+    
+    // if word count is less than 25, do nothing
     if (wordCount <= 25) return;
+    // if word count is greater than 100, decrease by 100
     else if (wordCount > 100) wordCount -= 100;
+    // if word count is between 25 and 100, decrease by 25
     else  wordCount -= 25;
     
-    restart();
+    restart(inputText, runPauseButton);
 
 }
 
-void incWords(){
-
+void incWords(sf::Text& inputText, sf::Sprite& runPauseButton){
+    
+    // if word count is greater than 1000, do nothing
     if (wordCount >= 1000) return;
+    // if word count is less than 100, increase by 25
     else if (wordCount < 100) wordCount += 25;
+    // if word count is between 100 and 1000, increase by 100
     else wordCount += 100;
    
-    restart();
+    restart(inputText, runPauseButton);
 
 }
 
-void runPause(){
+void runPause(sf::Sprite& runPauseButton){
     
-    // set paused state
+    // run or pause
+    // Button texture is changed
     if (paused == true) {
 
         paused = false;
@@ -61,33 +61,38 @@ void runPause(){
 
 }
 
-void restart(){
+void restart(sf::Text& inputText, sf::Sprite& runPauseButton){
     
     // pause if not paused
-    if (paused == false) runPause();
-
+    if (paused == false) runPause(runPauseButton);
+    
+    // set finished status
     finished = true;
 
-    // reset parameters
+    // reset data
     loadWordList();
     trainingList.clear();
     nextWord = 0;
     speed = 0.7;
-
+    
+    // clear input
     inputText.setString("");
-
+    
+    // restart game music
     gameMusic.play();
 
 }
 
 bool isButtonClicked(sf::Sprite& button, int posX, int posY){
-
+    
+    // get click positions
     short buttonX = button.getGlobalBounds().width;
     short buttonX2 = button.getPosition().x - buttonX / 2;
 
     short buttonY = button.getGlobalBounds().height;
     short buttonY2 = button.getPosition().y - buttonY / 2;
     
+    // check if clck position is a button
     if ((posX <= buttonX2 + buttonX && posX >= buttonX2) 
     && (posY <= buttonY2 + buttonY && posY >= buttonY2)) return true;
 
@@ -96,9 +101,11 @@ bool isButtonClicked(sf::Sprite& button, int posX, int posY){
 }
 
 void animateButton(sf::Sprite& button, bool reset){
-
+    
+    // check for button clicks
     sf::Vector2f buttonPosition(button.getPosition());
-
+    
+    // animate buttons
     if (reset == true) {
 
         button.setScale(sf::Vector2f(1, 1));
@@ -113,13 +120,11 @@ void animateButton(sf::Sprite& button, bool reset){
 
 }
 
-// textboard
 double textBoardHeight = 540;
 double textBoardWidth = 1024;
 double charactorSize = 20;
 
 sf::Texture textBoardTexture;
-// sf::Sprite textBoard;
 
 sf::Font font;
 std::vector<std::string> wordList;
@@ -131,7 +136,7 @@ double speed = 0.7;
 
 void loadWordList(){
     
-    // read file
+    // read word file
     std::ifstream tempWordList("assets/wordlist/wordlist_common.txt");
     
     // load all the words
@@ -158,7 +163,7 @@ void loadWordList(){
 
 }
 
-void addWord(sf::RenderWindow& window){
+void addWord(sf::RenderWindow& window, sf::Text& inputText, sf::Sprite& runPauseButton){
 
     // draw words
     for (sf::Text& word : trainingList){
@@ -186,7 +191,7 @@ void addWord(sf::RenderWindow& window){
     // return if word list ends
     if (nextWord == wordCount){
         
-        if (trainingList.size() == 0) restart();
+        if (trainingList.size() == 0) restart(inputText, runPauseButton);
         return;
 
     }
@@ -194,6 +199,8 @@ void addWord(sf::RenderWindow& window){
     // add a new word
     short trainingListSize = trainingList.size();
     
+    // check position before adding word
+    // last word must be in a reasonable distance from the top
     if ((trainingListSize == 0 || trainingList[trainingListSize - 1].getPosition().y >= 80)){
 
         // sf::Text word;
@@ -238,21 +245,19 @@ void highlightWord(){
 
 void adjustSpeed(){
     
+    // adjust word flow speed according to the typing speed
+    // I don't know a sh*t about this
     speed = (2 / (1 + log10(trainingList.size()))) - 0.3;
 
 }
 
-// scoreboard
 sf::Texture scoreBoardTexture;
-// sf::Sprite scoreBoard;
 
 std::vector<char> inputWord;
-// sf::Text inputText;
 
 int catchedWordCount = 0;
-// sf::Text catchedWordText;
 
-void catchWord(){
+void catchWord(sf::Text& inputText){
     
     // return if training list is empty
     if (trainingList.size() == 0 || paused == true) return;
@@ -261,15 +266,21 @@ void catchWord(){
     if (inputText.getString() == trainingList[0].getString()) {
 
         catchedWordCount++;
-
-        catchMusic.openFromFile("assets/music/catch.wav");
+        
+        // play catching sound
+        if (!catchMusic.openFromFile("assets/musics/catch.wav")){
+            std::cout << "Failed to load catch sound" << std::endl;
+        }
         catchMusic.play();
 
     }else{
 
         missedWordCount++;
-
-        missMusic.openFromFile("assets/music/miss.wav");
+        
+        // play missing sound
+        if (!missMusic.openFromFile("assets/musics/miss.wav")){
+            std::cout << "Failed to load miss sound" << std::endl;
+        }
         missMusic.play();
 
     } 
@@ -281,27 +292,29 @@ void catchWord(){
 
 }
 
-void getInput(int unicode){
+void getInput(int unicode, sf::Text& inputText){
     
-    // prevent input shile paused
+    // prevent input while paused
     if (paused == true) return;
     
     // get character
     char inputChar;
-    inputChar = static_cast<char>(unicode);
+    inputChar = static_cast<char> (unicode);
 
     std::string text;
     
     // type space to catch
+    // empty word are not catched
     if (inputChar == ' ' && inputWord.size() > 0) {
         
-        catchWord();
+        inputText.setString(text);
+        catchWord(inputText);
         return;
     
     // regular and special characters
     }else if (32 < unicode && unicode < 127) inputWord.push_back(inputChar);
     
-    // backspace
+    // backspace remove last character
     else if (inputChar == '\b' && inputWord.size() > 0) inputWord.pop_back();
     
     // update word
@@ -310,9 +323,11 @@ void getInput(int unicode){
     }
     
     // return if character length exceeds
+    // prevent user from inputing unnecessary amount of characters
     if (text.size() > 16) return;
     
     // set text and warn
+    // warn about mistakes
     inputText.setString(text);
     if (text != trainingList[0].getString().substring(0, text.size())) inputText.setFillColor(sf::Color::Red);
     else inputText.setFillColor(sf::Color::Black);
@@ -320,7 +335,6 @@ void getInput(int unicode){
 }
 
 int missedWordCount = 0;
-// sf::Text missedWordText;
 
 void kickWord(){
        
@@ -329,13 +343,17 @@ void kickWord(){
     
     // remove missed word
     sf::Text word = trainingList[0];
-
+    
+    // check for missed words
     if (word.getPosition().y >= 570){
 
         trainingList.erase(trainingList.begin());
         missedWordCount++;
-
-        missMusic.openFromFile("assets/music/miss.wav");
+        
+        // play missed music
+        if (!missMusic.openFromFile("assets/musics/miss.wav")){
+            std::cout << "Failed to load miss sound" << std::endl;
+        }
         missMusic.play();
 
     }
@@ -343,26 +361,30 @@ void kickWord(){
 }
 
 int WPM = 0;
-// sf::Text wpmText;
 
 sf::Clock wpmClock;
 double wpmTime = 0;
 
 void wordsPerMinute(){
-
+    
+    // wpm clock is not running if the game is paused or finished
     if (finished == false && paused == false) wpmTime += wpmClock.getElapsedTime().asSeconds();
     else if (finished == true) wpmTime = 0;
 
+    // calculate wpm
     if (wpmTime > 0) WPM = ceil(catchedWordCount * 60 / wpmTime);
 
     wpmClock.restart();
 
 }
 
-void updateScore(sf::RenderWindow& window){
-
+void updateScore(sf::RenderWindow& window, sf::Text& catchedWordText, 
+sf::Text& missedWordText, sf::Text& wpmText){
+    
+    // draw scores
+    // catched, missed, wpm
     std::string score;
-
+    
     score = std::to_string(catchedWordCount);
     catchedWordText.setString(score);
 
@@ -379,7 +401,9 @@ void updateScore(sf::RenderWindow& window){
 }
 
 void resetScore(){
-
+    
+    // reset scores to original
+    // catched, missed, wpm
     catchedWordCount = 0;
     missedWordCount = 0;
     WPM = 0;
