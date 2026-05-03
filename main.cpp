@@ -7,15 +7,13 @@
 int main(){
 
     // window
-    
-    sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(sf::Vector2u(windowWidth, windowHeight)), 
-    "Catch the word", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Catch the word", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
 
     if (!icon.loadFromFile("assets/images/icon.ico")) {
         std::cout << "Failed to load icon" << std::endl;
     }
-    window.setIcon(sf::Vector2u(icon.getSize().x, icon.getSize().y), icon.getPixelsPtr());
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     // main menu
 
@@ -51,7 +49,8 @@ int main(){
     sf::Sprite selectionMenu(selectionMenuTexture);
     
     // word count
-    sf::Text wordCountText(font);
+    sf::Text wordCountText;
+    wordCountText.setFont(font);
     wordCountText.setCharacterSize(25);
     wordCountText.setFillColor(sf::Color::White);
     wordCountText.setPosition(sf::Vector2f(140, 6));
@@ -112,25 +111,29 @@ int main(){
     scoreBoard.setPosition(sf::Vector2f(0, selectionMenuHeight + textBoardHeight));
     
     // input text from the player
-    sf::Text inputText(font);
+    sf::Text inputText;
+    inputText.setFont(font);
     inputText.setCharacterSize(30);
     inputText.setFillColor(sf::Color::Black);
     inputText.setPosition(sf::Vector2f(30, 590));
     
     // catched words count
-    sf::Text catchedWordText(font);
+    sf::Text catchedWordText;
+    catchedWordText.setFont(font);
     catchedWordText.setCharacterSize(20);
     catchedWordText.setFillColor(sf::Color::White);
     catchedWordText.setPosition(sf::Vector2f(560, 600));
 
     // missed words count
-    sf::Text missedWordText(font);
+    sf::Text missedWordText;
+    missedWordText.setFont(font);
     missedWordText.setCharacterSize(20);
     missedWordText.setFillColor(sf::Color::White);
     missedWordText.setPosition(sf::Vector2f(760, 600));
     
     // words per minute
-    sf::Text wpmText(font);
+    sf::Text wpmText;
+    wpmText.setFont(font);
     wpmText.setCharacterSize(20);
     wpmText.setFillColor(sf::Color::White);
     wpmText.setPosition(sf::Vector2f(935, 600));

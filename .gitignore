@@ -1,9 +1,3 @@
-# output folders
-bin/
+SFML/
 build/
-
-# libraries
-libs/
-
-# vscode
-.vscode/
+bin/

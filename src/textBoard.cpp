@@ -205,7 +205,8 @@ void addWord(sf::RenderWindow& window, sf::Text& inputText, sf::Sprite& runPause
 
         // sf::Text word;
         // word.setFont(font);
-        sf::Text word(font);
+        sf::Text word;
+        word.setFont(font);
         word.setString(wordList[nextWord]);
         word.setCharacterSize(charactorSize);
 

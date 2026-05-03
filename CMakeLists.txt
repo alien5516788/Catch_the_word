@@ -11,16 +11,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Include directories
 include_directories(headers)
-include_directories(libs/SFML/include)
+include_directories(SFML/include)
 
 # dependancies
-add_subdirectory(libs/SFML) # sfml
-add_subdirectory(libs/flac) # flac
-add_subdirectory(libs/freetype) # freetype
+add_subdirectory(SFML)
 
 # Target
-add_executable(ctw ctw.cpp src/mainMenu.cpp src/textBoard.cpp src/window.cpp)
-target_link_libraries(ctw sfml-graphics sfml-main sfml-window sfml-system sfml-audio FLAC freetype)
+add_executable(ctw main.cpp src/mainMenu.cpp src/textBoard.cpp src/window.cpp)
+target_link_libraries(ctw sfml-graphics sfml-window sfml-system sfml-audio)
 set_target_properties(ctw PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../bin)
 
 # Extra folders
