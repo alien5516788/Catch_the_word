@@ -1,3 +1,8 @@
+⚠️ Archived – Learning/Experimental Project
+
+Built during an earlier exploration phase.
+Left as-is for reference; not actively maintained.
+
 # Catch The Word (CTW)
 
 A simple SFML-based word game built with C++ and CMake.
