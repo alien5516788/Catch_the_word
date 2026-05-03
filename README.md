@@ -14,7 +14,7 @@ A simple SFML-based word game built with C++ and CMake.
 
 ---
 
-## ⚠️ Platform Note
+## Platform Note
 
 This project **only reliably works on Linux**.
 
@@ -25,7 +25,7 @@ It may not build or run correctly on Windows due to:
 
 ---
 
-## 🧩 Dependencies
+## Dependencies
 
 This project uses:
 
@@ -41,7 +41,7 @@ sudo apt install libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-d
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
@@ -55,7 +55,7 @@ sudo apt install libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-d
 
 ---
 
-## ⚙️ Build Instructions
+## Build Instructions
 
 ### 1. Clone the project
 
@@ -114,7 +114,7 @@ cd ..
 
 ---
 
-## 🧠 Notes
+## Notes
 
 * If you want to extract the final build out of the project, copy both /bin and /assets folders into a separate folder
 * SFML is built from source via `add_subdirectory(SFML)`
@@ -123,7 +123,7 @@ cd ..
 
 ---
 
-## 🚀 Troubleshooting
+## Troubleshooting
 
 If build fails:
 
