@@ -1,7 +1,6 @@
-⚠️ Archived – Learning/Experimental Project
+⚠️ Archived – Hobby Project
 
-Built during an earlier exploration phase.
-Left as-is for reference; not actively maintained.
+Not actively maintained
 
 # Catch The Word (CTW)
 
